@@ -31,7 +31,7 @@
   </section>
   <!-- End Footer -->
   <script src="../js/app.js"></script>
-   <style type="text/css">
+  <style type="text/css">
        
        .navbar-container {
   width: 100%;
@@ -305,8 +305,6 @@ $(document).ready(function() {
 
     </script>
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <!-- Bootstrap JS (including Popper.js) -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -321,6 +319,24 @@ $(document).ready(function() {
       $(this).find('.tooltip').css('display', 'none');
     });
   });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<script>
+  $(function () {
+ 
+ $(".rateYo").rateYo({
+   rating: 1,
+   fullStar: true
+ }).on("rateyo.change", function (e, data) {
+  let rating = data.rating;
+  console.log(rating);
+  $(this).parent().find('input[name=rating]').val(rating);
+ });
+
+});
 </script>
 </body>
 </html>

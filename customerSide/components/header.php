@@ -1,6 +1,7 @@
 <?php
 require_once '../config.php';
 
+$current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 $sqlmainDishes = "SELECT * FROM Menu WHERE item_category = 'Main Dishes' ORDER BY item_type; ";
 $resultmainDishes = mysqli_query($link, $sqlmainDishes);
@@ -24,7 +25,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     echo '</div>';
     
 }
-
 session_start();
 ?>
 <!DOCTYPE html>
@@ -39,6 +39,11 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- FOR REVIEWS PAGE -->
+    <link rel="stylesheet" href="../css/stars.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+    
     <title>Home</title>
 </head>
 
@@ -62,9 +67,6 @@ session_start();
 
                         <div class="navbar">
                             <ul>
-<?php
-$current_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-?>
                                 <li><a href="<?= strpos($current_url, "localhost/customerSide/home/home.php") !== false ? "#hero" : "/customerSide/home/home.php" ?>" data-after="Home">Home</a></li>
 <?php
 if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
@@ -73,15 +75,12 @@ if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
                                 <li><a href="#about" data-after="About">About</a></li>
                                 <li><a href="#contact" data-after="Contact">Contact</a></li>
 <?php
-} else {
+}
 ?>
+                                <li><a href="/customerSide/home/reviews.php" data-after="Reviews">Reviews</a></li>
                                 <li><a href="../CustomerReservation/reservePage.php"
                                         data-after="Service">Reservation</a></li>
                                 <li><a href="../../adminSide/StaffLogin/login.php" data-after="Staff">Staff</a></li>
-<?php
-}
-?>
-
 
 
 
@@ -91,7 +90,6 @@ if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
                                     <div class="dropdown-content">
 
 <?php
-
 // Get the member_id from the query parameters
 $account_id = $_SESSION['account_id'] ?? null; // Change this to the way you obtain the member ID
 

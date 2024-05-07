@@ -84,9 +84,6 @@ if (strpos($current_url, "localhost/customerSide/home/home.php") !== false) {
 }
 ?>
 
-
-
-
                                 <div class="dropdown">
                                     <button class="dropbtn">ACCOUNT <i class="fa fa-caret-down" aria-hidden="true"></i>
                                     </button>
